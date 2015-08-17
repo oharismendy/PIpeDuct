@@ -1,2 +1,2 @@
-# TDTSEQ
-Analysis of adduct sequencing experiments
+# PipeDuct
+Analysis of adduct sequencing experiments 
