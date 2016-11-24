@@ -1,0 +1,1 @@
+#sampleID	replicateID	libraryID	filename	treatment_flagIMR90_0	rep1	IMR90_0_CDDP_1	IMR90_0_CDDP_1.fastq.gz	FALSEIMR90_0	rep2	IMR90_0_CDDP_2	IMR90_0_CDDP_2.fastq.gz	FALSEIMR90_100	rep1	IMR90_100_CDDP_1	IMR90_100_CDDP_1.fastq.gz	TRUEIMR90_100	rep2	IMR90_100_CDDP_2	IMR90_100_CDDP_2.fastq.gz	TRUE
