@@ -13,6 +13,7 @@
 # dependencies include:
 #	samtools
 #	bedtools
+#	
 #
 #########################################
 
@@ -25,7 +26,7 @@ use File::Basename;
 my $MQ=10 ;		#read miminal mapping quality
 my $readlength=50;
 my $fastalen=4; #number of nucleotides to grab on eitherside of the last read nculeotide. The total length will be therefore 2*fastlen+1
-my $ref="/mnt/idash/Genomics/data_resources/references-and-indexes/hg19/hg19.fa"
+my $ref="/mnt/idash/Genomics/data_resources/references-and-indexes/hg19/hg19.fa";
 my $name=basename($ARGV[0],".bam");
 
 # declare variables
@@ -42,7 +43,7 @@ my $fasta;
 
 if( $ARGV[0] eq '-h' || $ARGV[0] eq '-help')
 {
-print "USAGE: bam2cnt.pl [file.bam] \n";
+print "USAGE: pipeduct_count.pl [file.bam] \n";
 exit;
 }
 
@@ -53,8 +54,8 @@ exit;
 #########################################
 
 open (my $rawcount, "samtools view $ARGV[0] | awk '\$5>$MQ' | cut -f 2,3,4 | sort | uniq -c | awk '{print \$3,\$4,\$2,\$1}' | sed 's/ /\t/g' |");
-open OUT, ">$name.cnt";
-
+open OUT1, ">$name.cnt";
+#open OUT2, ">$name.fa";
 
 #########################################
 #
@@ -88,7 +89,9 @@ $fasta=uc($fasta);
 #########################################
 
 chomp($fasta);
-print OUT "$chr:$coord:$strand\t$chr\t$coord\t$strand\t$cnt\t$fasta\n";
-}
-close OUT;
+print OUT1 "$chr:$coord:$strand\t$chr\t$coord\t$strand\t$cnt\t$fasta\n";
+#print OUT2 ">$chr:$coord:$strand\n$fasta\n";
 
+}
+close OUT1;
+#close OUT2;
