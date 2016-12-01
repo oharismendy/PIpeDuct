@@ -14,9 +14,6 @@ project <- read.delim(args[1])
 projectID<-sub(".txt","",basename(args[1]))
 projectdir<-dirname(args[1])
 
-#args<-"mytestproject.txt"
-#projectID<-sub(".txt","",args)
-#project <- read.delim("~/Documents/UCSD/Admin/IT/PipeDuct/test_data/sample_sheet.txt")
 project$cntfiles<-paste(projectdir,paste(projectID,"cnt",sep="_"),sub(".fastq.gz",".cnt",project$filename),sep="/")
 
 #import all files 

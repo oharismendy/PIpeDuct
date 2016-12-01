@@ -1,22 +1,19 @@
-library(dplyr)
 library(plyr)
+library(dplyr)
 library(ggplot2)
 library(reshape2)
 
-#args <- commandArgs(TRUE)
-
-args <- c("/Volumes/oncogxA/Projects/TDTSEQ/NGS/PipeDuct_dev/invivo.txt","/Volumes/oncogxA/Projects/TDTSEQ/NGS/PipeDuct_dev/hub_1623_HMM15IMR90_Cell_Line.bed")
+args <- commandArgs(TRUE)
 project <- read.delim(args[1])
 projectID<-sub(".txt","",basename(args[1]))
 projectdir<-dirname(args[1])
-
 reg <- args[2]
 regID<-sub(".bed","",basename(args[2]))
 
 
 #########################################
 #
-# import the intersectin counts
+# import the intersection counts
 #
 #########################################
 
@@ -61,13 +58,15 @@ tmp<-mapply(testregion,as.character(grid[,1]),as.character(grid[,2]),SIMPLIFY = 
 volcano<-cbind(volcano,t(tmp))
 colnames(volcano)<-c("libraryID","region","pval","ratio")
 
-
+write.table(volcano  "volcano.txt",quote=FALSE,row.names = FALSE,sep="\t")
 	
 #########################################
 #
 # volcano plot
 #
 #########################################
+
+pdf("volcano.pdf")
 
 ggplot(volcano,aes(log2(ratio),-log10(pval),color=region,shape=libraryID))+
   geom_point(size=5)+
@@ -76,5 +75,5 @@ ggplot(volcano,aes(log2(ratio),-log10(pval),color=region,shape=libraryID))+
   ylab("-log10(P.value)")+
   theme(text=element_text(size=26))
        
-
+dev.off()
 
