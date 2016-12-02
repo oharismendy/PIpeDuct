@@ -12,7 +12,7 @@
 
 
 project=`basename $1 ".txt"` #sample sheet for the project
-projectdir=`/scratch` # for the docker container
+projectdir="/scratch" # for the docker container
 scriptsdir="/opt/PipeDuct" # for the docker container
 regbed=`basename $2 ".bed"`
 regbeddir=`dirname $2`
